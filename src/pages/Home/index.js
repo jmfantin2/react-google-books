@@ -1,50 +1,73 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
+import { GetBooks } from '../../services/api';
 import axios from 'axios';
 
 import './index.css'
 
-export default function Home(){
+import BookList from "../../components/BookList";
 
-  const [query, setQuery] = useState('');
-  let books = null;
+class Home extends Component {
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    console.log("Query: " + query);
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+      query: ''
+    };
+  }
 
+  getBooks() {
     axios.request({
       method: 'get',
-      url: 'https://www.googleapis.com/books/v1/volumes?q=' + query
+      url: 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.query
     }).then((response) => {
-      books = response.data;
-      console.log("Books: ", books);
+      this.setState({books: response.data.items}, () => {
+        console.log('State: ', this.state);
+      })
     }).catch((error) => {
       console.log(error);
     });
   }
 
-  return(
-    <div className="container">
+  handleTextChange(event) {
+    this.setState({ query: event.target.value });
+  }
 
-      <div className="search">
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log("Query: " + this.state.query);
+    this.getBooks();
+  }
 
-        <p>Busque por um livro</p>
-        <form onSubmit={ handleSubmit }>
-          <input
-            id="query"
-            type="query"
-            placeholder="Nichiren Daishonin"
-            onChange={ event => setQuery(event.target.value) }
-          />
-          <button className="btn" type="submit">Pesquisar</button>
-        </form>
+  render() {
+
+    return (
+      <div className="container">
+
+        <div className="search">
+
+          <p>Busque por um livro</p>
+          <form onSubmit={ event => this.handleSubmit(event) }>
+            <input
+              id="query"
+              type="query"
+              placeholder="Insira aqui seus termos de busca :)"
+              onChange={event => this.handleTextChange(event)}
+              value={this.state.query}
+            />
+            <button className="btn" type="submit">Pesquisar</button>
+          </form>
+
+        </div>
+
+        <div className="results">
+          <p>Os resultados aparecerão aqui :)</p>
+          <BookList books={this.state.books}/>
+        </div>
 
       </div>
-
-      <div className="results">
-        <p>Os resultados aparecerão aqui :)</p>
-      </div>
-
-    </div>
-  );
+    );
+  }
 }
+
+export default Home;
