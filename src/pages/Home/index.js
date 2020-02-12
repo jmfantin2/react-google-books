@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { GetBooks } from '../../services/api';
 import axios from 'axios';
 
 import './index.css'
@@ -22,7 +21,8 @@ class Home extends Component {
       url: 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.query
     }).then((response) => {
       this.setState({books: response.data.items}, () => {
-        console.log('State: ', this.state);
+        //console.log('State: ', this.state);
+        console.log('TypeOf pqp: ', typeof(this.state.books));
       })
     }).catch((error) => {
       console.log(error);
@@ -61,8 +61,13 @@ class Home extends Component {
         </div>
 
         <div className="results">
-          <p>Os resultados aparecerão aqui :)</p>
-          <BookList books={this.state.books}/>
+          {
+            this.state.books.length === 0 ? (
+              <h3>Os resultados aparecerão aqui :)</h3>
+            ) : (
+              <BookList books={Array.from(this.state.books)}/>
+            )
+          }
         </div>
 
       </div>

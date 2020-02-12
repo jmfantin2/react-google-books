@@ -1,0 +1,22 @@
+.books {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 4px;
+}
+
+.books button {
+  margin-right: 10px;
+  border: 0;
+  border-radius: 2px;
+  height: 20px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: bold;
+  background: #fd7100;
+  color: #fff;
+  cursor: pointer;
+}
+
+.books button:hover {
+  background: #ff4f00;
+}
