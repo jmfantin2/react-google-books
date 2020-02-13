@@ -19,7 +19,7 @@ function BookDetails () {
   function getVolume() {
     axios.request({
       method: 'get',
-      url: 'https://www.googleapis.com/books/v1/volumes/volumeId?q=' + bookId
+      url: 'https://www.googleapis.com/books/v1/volumes/' + bookId
     }).then((response) => {
       console.log('Response: ', response);
     }).catch((error) => {
