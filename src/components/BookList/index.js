@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+import { Link } from 'react-router-dom'
 import './index.css';
 
 class BookList extends Component {
@@ -9,18 +9,11 @@ class BookList extends Component {
       bookItems = this.props.books.map(book => {
         let id = book.id;
         let title = book.volumeInfo.title;
-        // let thumbnail = book.volumeInfo.imageLinks.thumbnail;
-        let categories = book.volumeInfo.categories;
-        let authors = book.volumeInfo.authors;
-        let publisher = book.volumeInfo.publisher;
-        let description = book.volumeInfo.description;
-        let pageCount = book.volumeInfo.pageCount;
-        let publishedDate = book.volumeInfo.publishedDate;
-        let averageRating = book.volumeInfo.averageRating;
-        let buyLink = book.saleInfo.buyLink;
         return (
           <div className="books">
-            <button> Detalhes </button>
+            <Link to={`/bookDetails?book_id=${id}`}>
+              <button> Detalhes </button>
+            </Link>
             <p>{title}</p>
           </div>
         )
@@ -37,29 +30,3 @@ class BookList extends Component {
 }
 
 export default BookList;
-
-/*
-        let id = book.id;
-        let title = book.volumeInfo.title;
-        let thumbnail = book.volumeInfo.imageLinks.thumbnail;
-        let categories = book.volumeInfo.categories;
-        let authors = book.volumeInfo.authors;
-        let publisher = book.volumeInfo.publisher;
-        let description = book.volumeInfo.description;
-        let pageCount = book.volumeInfo.pageCount;
-        let publishedDate = book.volumeInfo.publishedDate;
-        let averageRating = book.volumeInfo.averageRating;
-        let buyLink = book.saleInfo.buyLink;
-
-        <div>
-          <ul className="book-list">
-            {books.map(book => (
-              <li key={book.id}>
-                <header style={{ backgroundImage: book.volumeInfo.imageLinks.thumbnail }}/>
-                <strong>{book.volumeInfo.title}</strong>
-                <span>{book.volumeInfo.authors}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
- */
