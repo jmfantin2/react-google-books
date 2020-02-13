@@ -11,7 +11,7 @@ class Home extends Component {
     super(props);
     this.state = {
       books: [],
-      query: ''
+      query: '',
     };
   }
 
@@ -21,8 +21,7 @@ class Home extends Component {
       url: 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.query
     }).then((response) => {
       this.setState({books: response.data.items}, () => {
-        //console.log('State: ', this.state);
-        console.log('TypeOf pqp: ', typeof(this.state.books));
+        console.log('State: ', this.state);
       })
     }).catch((error) => {
       console.log(error);
@@ -33,10 +32,10 @@ class Home extends Component {
     this.setState({ query: event.target.value });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     console.log("Query: " + this.state.query);
-    this.getBooks();
+    await this.getBooks();
   }
 
   render() {
@@ -62,10 +61,14 @@ class Home extends Component {
 
         <div className="results">
           {
-            this.state.books.length === 0 ? (
-              <h3>Os resultados aparecerão aqui :)</h3>
+            this.state.books === undefined ? (
+              <h3>Não há resultados para sua busca :(</h3>
             ) : (
-              <BookList books={Array.from(this.state.books)}/>
+              this.state.books.length === 0 ? (
+                <h3>Os resultados aparecerão aqui :)</h3>
+              ) : (
+                <BookList books={Array.from(this.state.books)}/>
+              )
             )
           }
         </div>
