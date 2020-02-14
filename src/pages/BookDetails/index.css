@@ -1,0 +1,64 @@
+.details-container {
+  background: #fff;
+  border-radius: 4px;
+  margin-top: 25px;
+  padding: 20px;
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
+}
+
+.loader {
+  margin-top: 80px;
+  align-items: center;
+}
+
+.more-info {
+  margin: 40px;
+  display: flex;
+  flex: 3;
+  flex-direction: row;
+}
+
+.more-info h3 {
+  margin-bottom: 15px;
+}
+
+.more-info > div {
+  flex: 1;
+}
+
+.more-info > p {
+  flex: 2;
+  margin-right: 20px;
+}
+
+.more-info header {
+  width: 100%;
+  height: 180px;
+  background-repeat: no-repeat;
+}
+
+.lowbar {
+  margin-top: 40px;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.lowbar button {
+  border: 0;
+  border-radius: 2px;
+  height: 24px;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  background: #fd7100;
+  color: #fff;
+  cursor: pointer;
+}
+
+.lowbar button:hover {
+  background: #ff4f00;
+}
