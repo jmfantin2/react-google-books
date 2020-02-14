@@ -13,10 +13,6 @@
   text-align: center;
 }
 
-.results > h3 {
-  text-align: center;
-}
-
 .search form {
   display: flex;
   flex-direction: column;
@@ -29,6 +25,16 @@
   height: 45px;
   padding: 0 15px;
   font-size: 16px;
+}
+
+.buttons-bar {
+  display: flex;
+  flex-direction: row;
+  flex: 2;
+}
+
+.buttons-bar > button {
+  margin-right: 20px;
 }
 
 .search button.btn {
@@ -46,4 +52,8 @@
 
 .search button.btn:hover {
   background: #ff4f00;
+}
+
+.results > h3 {
+  text-align: center;
 }

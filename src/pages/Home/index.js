@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 import axios from 'axios';
 
 import './index.css'
@@ -17,7 +18,7 @@ class Home extends Component {
 
   getBooks() {
     //const apiKey = 'AIzaSyChpjdeKEGzogkWe1UOwnYgY86x6MzFDHE' :(
-    //appending it (?key=${apiKey}) to the url will break the request (e400)
+    //appending it (?key=${apiKey}) will solve e400 while creating another one
     const query = this.state.query;
     axios.request({
       method: 'get',
@@ -57,7 +58,12 @@ class Home extends Component {
               onChange={event => this.handleTextChange(event)}
               value={this.state.query}
             />
-            <button className="btn" type="submit">Pesquisar</button>
+            <div className="buttons-bar">
+              <button className="btn" type="submit">Pesquisar</button>
+              <Link to={'/favorites'}>
+                <button className="btn">Favoritos</button>
+              </Link>
+            </div>
           </form>
 
         </div>
