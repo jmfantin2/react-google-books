@@ -7,10 +7,7 @@ import {Link} from "react-router-dom";
 function Favorites(){
 
   const favorites = JSON.parse(localStorage.getItem('favEntries')) || [];
-  console.log('favorites: ', favorites);
-  console.log('typeof favorites: ', typeof(favorites));
   const entries = Object.entries(favorites);
-  console.log(entries);
 
   return (
 

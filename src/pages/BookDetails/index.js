@@ -87,17 +87,3 @@ function BookDetails({ history }) {
 }
 
 export default BookDetails;
-
-/*
-        let id = book.id;
-        let title = book.volumeInfo.title;
-        let thumbnail = book.volumeInfo.imageLinks.thumbnail;
-        let categories = book.volumeInfo.categories;
-        let authors = book.volumeInfo.authors;
-        let publisher = book.volumeInfo.publisher;
-        let description = book.volumeInfo.description;
-        let pageCount = book.volumeInfo.pageCount;
-        let publishedDate = book.volumeInfo.publishedDate;
-        let averageRating = book.volumeInfo.averageRating;
-        let buyLink = book.saleInfo.buyLink;
-*/
