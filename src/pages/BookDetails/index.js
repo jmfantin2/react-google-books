@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner'
 
 import './index.css'
 
-function BookDetails() {
+function BookDetails({ history }) {
   const [bookId, setBookId] = useState('');
   const [book, setBook] = useState('');
   const [runAllowed, setRunAllowed] = useState(true);
@@ -36,6 +36,19 @@ function BookDetails() {
     console.log("[Workaround] Axios call locked if false: ", runAllowed);
   }
 
+  function addToFavorites(event){
+    event.preventDefault();
+    let currentEntries = JSON.parse(localStorage.getItem('favEntries')) || [];
+    let newEntry = {
+      'id': book.id,
+      'title': book.volumeInfo.title,
+    };
+    currentEntries.push(newEntry);
+    localStorage.setItem('favEntries', JSON.stringify(currentEntries));
+    console.log("Your favorite list: ", currentEntries);
+    history.push('/favorites')
+  }
+
   return (
     <div className="container">
       {book === '' ? (
@@ -55,7 +68,6 @@ function BookDetails() {
               <h3>{book.volumeInfo.authors}</h3>
               {book.volumeInfo.imageLinks.thumbnail === undefined ? null : (
               <header
-                className="book-cover"
                 style={{ backgroundImage: `url(${book.volumeInfo.imageLinks.thumbnail})` }}/>
               )}
             </div>
@@ -64,7 +76,8 @@ function BookDetails() {
           <div className="lowbar">
             <h4>Publicação: {book.volumeInfo.publishedDate}</h4>
             <h4>No de Páginas: {book.volumeInfo.pageCount}</h4>
-            <button>Favoritar</button>
+            <button
+              onClick={event => addToFavorites(event)}>Favoritar</button>
           </div>
         </div>
       )}
