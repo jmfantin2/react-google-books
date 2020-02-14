@@ -16,9 +16,12 @@ class Home extends Component {
   }
 
   getBooks() {
+    //const apiKey = 'AIzaSyChpjdeKEGzogkWe1UOwnYgY86x6MzFDHE' :(
+    //appending it (?key=${apiKey}) to the url will break the request (e400)
+    const query = this.state.query;
     axios.request({
       method: 'get',
-      url: 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.query
+      url: `https://www.googleapis.com/books/v1/volumes?q=${query}`
     }).then((response) => {
       this.setState({books: response.data.items}, () => {
         console.log('State: ', this.state);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+
 import axios from 'axios';
 
 import Loader from 'react-loader-spinner'
@@ -11,6 +12,7 @@ function BookDetails() {
   const [run, setRun] = useState(true);
   const query = new URLSearchParams(useLocation().search);
 
+  const apiKey = 'AIzaSyChpjdeKEGzogkWe1UOwnYgY86x6MzFDHE';
 
   useEffect(() => {
     function retrieveBookId() {
@@ -24,7 +26,7 @@ function BookDetails() {
     if(run) {
       axios.request({
         method: 'get',
-        url: 'https://www.googleapis.com/books/v1/volumes/' + bookId,
+        url: `https://www.googleapis.com/books/v1/volumes/${bookId}?key=${apiKey}`
       }).then((response) => {
         setRun(false);
         setBook(response.data);
